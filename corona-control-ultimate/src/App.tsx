@@ -24,7 +24,7 @@ import '@/managers/AntiCheatManager';
 import '@/managers/PerformanceProfiler';
 
 function App() {
-    console.log('--- APP RENDERING ---');
+    console.log('[v0] APP RENDERING, menuState:', useGameStore.getState().gameState.menuState);
     const menuState = useGameStore(state => state.gameState.menuState);
 
     // Global Key Listener for Pause

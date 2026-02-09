@@ -76,10 +76,14 @@ import { performanceProfiler } from '@/managers/PerformanceProfiler';
  * PerformanceMonitor - Updates profiler with engine stats
  */
 const PerformanceMonitor = () => {
-    const { gl } = useThree();
+    const { gl, size } = useThree();
     useFrame(() => {
-        performanceProfiler.updateDrawCalls(gl.info.render.calls);
+        if (performanceProfiler) {
+            performanceProfiler.updateDrawCalls(gl.info.render.calls);
+        }
     });
+    // Log canvas size once
+    console.log('[v0] Canvas size:', size.width, 'x', size.height, 'DPR:', gl.getPixelRatio());
     return null;
 };
 
@@ -87,6 +91,7 @@ const GameCanvas: React.FC = () => {
     const menuState = useGameStore(state => state.gameState.menuState);
     const settings = useGameStore(state => state.settings);
     const quality = settings.graphicsQuality;
+    console.log('[v0] GameCanvas rendering, menuState:', menuState, 'quality:', quality);
 
     const dpr = quality === 'HIGH' ? [1, 2] : (quality === 'MEDIUM' ? [0.8, 1.5] : [0.5, 1]);
     const castShadows = true;
