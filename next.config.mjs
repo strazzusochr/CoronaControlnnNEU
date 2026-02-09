@@ -1,7 +1,9 @@
-import { fileURLToPath } from 'url';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const gameSrc = path.join(__dirname, 'corona-control-ultimate', 'src');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -13,15 +15,13 @@ const nextConfig = {
     '@react-three/postprocessing',
     'postprocessing',
   ],
-  // Turbopack config (default in Next.js 16)
   turbopack: {
     resolveAlias: {
-      '@': path.resolve(__dirname, 'corona-control-ultimate/src'),
+      '@/*': [path.join(gameSrc, '*')],
     },
   },
-  // Webpack fallback
   webpack: (config) => {
-    config.resolve.alias['@'] = path.resolve(__dirname, 'corona-control-ultimate/src');
+    config.resolve.alias['@'] = gameSrc;
     return config;
   },
 };
