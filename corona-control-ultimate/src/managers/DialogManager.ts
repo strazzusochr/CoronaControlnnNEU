@@ -95,4 +95,6 @@ export const useDialogStore = create<DialogState>((set, get) => ({
 }));
 
 // Debug Access
-(window as any).dialogStore = useDialogStore;
+if (typeof window !== 'undefined') {
+  (window as any).dialogStore = useDialogStore;
+}

@@ -55,4 +55,6 @@ export class VerificationSuite {
 }
 
 // Expose to window for browser agent to call
-(window as any).VerificationSuite = VerificationSuite;
+if (typeof window !== 'undefined') {
+  (window as any).VerificationSuite = VerificationSuite;
+}

@@ -187,4 +187,6 @@ export function initTutorialInputListener() {
 }
 
 // Debug
-(window as any).tutorialStore = useTutorialStore;
+if (typeof window !== 'undefined') {
+  (window as any).tutorialStore = useTutorialStore;
+}

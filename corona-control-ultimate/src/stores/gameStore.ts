@@ -16,4 +16,6 @@ export const useGameStore = create<GameStore>((...a) => ({
 }));
 
 // Debug Access
-(window as any).gameStore = useGameStore;
+if (typeof window !== 'undefined') {
+  (window as any).gameStore = useGameStore;
+}

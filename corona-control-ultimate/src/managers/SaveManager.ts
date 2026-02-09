@@ -422,7 +422,9 @@ class SaveManager {
 }
 
 // Export singleton
-export const saveManager = SaveManager.getInstance();
+export const saveManager = typeof window !== 'undefined' ? SaveManager.getInstance() : (null as unknown as SaveManager);
 
 // Debug
-(window as any).saveManager = saveManager;
+if (typeof window !== 'undefined') {
+  (window as any).saveManager = saveManager;
+}

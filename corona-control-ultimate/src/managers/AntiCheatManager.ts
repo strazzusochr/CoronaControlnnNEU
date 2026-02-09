@@ -107,4 +107,4 @@ class AntiCheatManager {
     }
 }
 
-export const antiCheatManager = AntiCheatManager.getInstance();
+export const antiCheatManager = typeof window !== 'undefined' ? AntiCheatManager.getInstance() : (null as unknown as AntiCheatManager);

@@ -192,7 +192,9 @@ class ContextualHintsManager {
 }
 
 // Auto-initialize
-export const contextualHints = ContextualHintsManager.getInstance();
+export const contextualHints = typeof window !== 'undefined' ? ContextualHintsManager.getInstance() : (null as unknown as ContextualHintsManager);
 
 // Debug
-(window as any).contextualHints = contextualHints;
+if (typeof window !== 'undefined') {
+  (window as any).contextualHints = contextualHints;
+}

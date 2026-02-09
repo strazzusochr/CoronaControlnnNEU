@@ -150,5 +150,7 @@ class NetworkManager {
     }
 }
 
-export const networkManager = NetworkManager.getInstance();
-(window as any).networkManager = networkManager;
+export const networkManager = typeof window !== 'undefined' ? NetworkManager.getInstance() : (null as unknown as NetworkManager);
+if (typeof window !== 'undefined') {
+  (window as any).networkManager = networkManager;
+}

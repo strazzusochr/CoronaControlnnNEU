@@ -93,4 +93,4 @@ class PerformanceProfiler {
     }
 }
 
-export const performanceProfiler = PerformanceProfiler.getInstance();
+export const performanceProfiler = typeof window !== 'undefined' ? PerformanceProfiler.getInstance() : (null as unknown as PerformanceProfiler);
